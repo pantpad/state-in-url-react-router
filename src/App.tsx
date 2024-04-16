@@ -1,5 +1,12 @@
 import "./App.css";
 
 export default function App() {
-  return <h1>app</h1>;
+  return (
+    <>
+      <div className="flex gap-4">
+        <a href="#">Home</a>
+        <a href="#">Store</a>
+      </div>
+    </>
+  );
 }
