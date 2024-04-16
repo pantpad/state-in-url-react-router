@@ -1,4 +1,4 @@
-export default function Form() {
+export default function Filters() {
   return (
     <>
       <form className="flex flex-col">
