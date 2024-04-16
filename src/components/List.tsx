@@ -1,7 +1,7 @@
 export default function List() {
   return (
     <>
-      <ul>
+      <ul className="text-left">
         <li>item</li>
         <li>item</li>
         <li>item</li>
