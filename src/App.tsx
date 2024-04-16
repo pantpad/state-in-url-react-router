@@ -1,6 +1,7 @@
 import "./App.css";
 import CurrentPage from "./components/CurrentPage";
 import Form from "./components/Form";
+import List from "./components/List";
 import Nav from "./components/Nav";
 
 export default function App() {
@@ -10,7 +11,7 @@ export default function App() {
         <Nav />
         <CurrentPage />
         <Form />
-        <ul></ul>
+        <List />
       </main>
     </>
   );
