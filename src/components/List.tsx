@@ -3,6 +3,12 @@ export default function List() {
     <>
       <ul>
         <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
       </ul>
     </>
   );
