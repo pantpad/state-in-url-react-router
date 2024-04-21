@@ -4,12 +4,14 @@ import Filters from "./components/Filters";
 import List from "./components/List";
 import Nav from "./components/Nav";
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 import { mockList as allItems } from "./mockItems/list";
 
 export default function App() {
   console.log(allItems);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <>
