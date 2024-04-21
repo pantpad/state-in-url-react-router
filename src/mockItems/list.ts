@@ -33,70 +33,16 @@ const alphabet = [
   "Zed",
 ];
 
-export const mockList = [
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[2],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "asd",
-  },
-  {
+export const mockList = [] as listItem[];
+
+function generateRandomItem() {
+  return {
     id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
     name: alphabet[Math.floor(Math.random() * 26)],
     type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "adsd",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "asda",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "ccc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-  {
-    id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-    name: alphabet[Math.floor(Math.random() * 26)],
-    type: "pc",
-  },
-] as listItem[];
+  };
+}
+
+for (let i = 0; i < 20; i++) {
+  mockList.push(generateRandomItem());
+}

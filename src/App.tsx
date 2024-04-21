@@ -1,15 +1,13 @@
-import { useState } from "react";
 import "./App.css";
 import CurrentPage from "./components/CurrentPage";
 import Filters from "./components/Filters";
 import List from "./components/List";
 import Nav from "./components/Nav";
 
-import { mockList } from "./mockItems/list";
+import { mockList as allItems } from "./mockItems/list";
 
 export default function App() {
-  const [list, setList] = useState(mockList);
-  console.log(list);
+  console.log(allItems);
 
   return (
     <>
@@ -17,7 +15,7 @@ export default function App() {
         <Nav />
         <CurrentPage />
         <Filters />
-        <List list={list} />
+        <List list={allItems} />
       </main>
     </>
   );
