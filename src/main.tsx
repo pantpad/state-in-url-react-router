@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 import "./index.css";
 import CurrentPage from "./components/CurrentPage.tsx";
@@ -13,6 +17,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      { index: true, element: <Navigate to="/CurrentPage" replace /> },
       {
         path: "CurrentPage",
         element: <CurrentPage />,
