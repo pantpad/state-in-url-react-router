@@ -13,12 +13,24 @@ export default function App() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  console.log(searchParams);
+
+  function addParams(key: string, value: string) {
+    setSearchParams(
+      (prev) => {
+        prev.set(key, value);
+        return prev;
+      },
+      { replace: true }
+    );
+  }
+
   return (
     <>
       <main className="min-w-[min(32rem,100vw-2rem)] py-2 px-3 bg-red-100 flex flex-col gap-2 text-slate-600">
         <Nav />
         <Outlet />
-        <Filters />
+        <Filters addParams={addParams} />
         <List list={allItems} />
       </main>
     </>
