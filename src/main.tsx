@@ -5,11 +5,18 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
+import CurrentPage from "./components/CurrentPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "CurrentPage",
+        element: <CurrentPage />,
+      },
+    ],
   },
 ]);
 
