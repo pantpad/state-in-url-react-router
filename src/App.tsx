@@ -13,7 +13,8 @@ export default function App() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(searchParams);
+  const nameFilter = searchParams.get("q") || "";
+  const pcOnlyFilter = searchParams.get("pcOnly") || "false";
 
   function addParams(key: string, value: string) {
     setSearchParams(
@@ -30,7 +31,11 @@ export default function App() {
       <main className="min-w-[min(32rem,100vw-2rem)] py-2 px-3 bg-red-100 flex flex-col gap-2 text-slate-600">
         <Nav />
         <Outlet />
-        <Filters addParams={addParams} />
+        <Filters
+          addParams={addParams}
+          nameFilter={nameFilter}
+          pcOnlyFilter={pcOnlyFilter}
+        />
         <List list={allItems} />
       </main>
     </>

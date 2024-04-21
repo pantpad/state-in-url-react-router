@@ -1,8 +1,16 @@
 type FiltersType = {
   addParams: (key: string, value: string) => void;
+  nameFilter: string;
+  pcOnlyFilter: string;
 };
 
-export default function Filters({ addParams }: FiltersType) {
+export default function Filters({
+  addParams,
+  nameFilter,
+  pcOnlyFilter,
+}: FiltersType) {
+  console.log(pcOnlyFilter);
+
   return (
     <>
       <form className="flex flex-col">
@@ -11,6 +19,7 @@ export default function Filters({ addParams }: FiltersType) {
           <input
             type="text"
             id="search"
+            value={nameFilter}
             onChange={(e) => {
               addParams("q", e.target.value);
             }}
@@ -21,6 +30,7 @@ export default function Filters({ addParams }: FiltersType) {
           <input
             type="checkbox"
             id="filter"
+            checked={pcOnlyFilter === "true"}
             onChange={(e) => {
               addParams("pcOnly", e.target.checked.toString());
             }}
