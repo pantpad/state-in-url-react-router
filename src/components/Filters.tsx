@@ -9,8 +9,6 @@ export default function Filters({
   nameFilter,
   pcOnlyFilter,
 }: FiltersType) {
-  console.log(pcOnlyFilter);
-
   return (
     <>
       <form className="flex flex-col">

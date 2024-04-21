@@ -7,10 +7,9 @@ import Nav from "./components/Nav";
 import { Outlet, useSearchParams } from "react-router-dom";
 
 import { mockList as allItems } from "./mockItems/list";
+import { filterFunction } from "./utils/filterFunction";
 
 export default function App() {
-  console.log(allItems);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const nameFilter = searchParams.get("q") || "";
@@ -26,20 +25,7 @@ export default function App() {
     );
   }
 
-  const items = allItems.filter((item) => {
-    if (nameFilter && pcOnlyFilter === "true") {
-      return (
-        item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-        item.type === "pc"
-      );
-    }
-    if (nameFilter)
-      return item.name.toLowerCase().includes(nameFilter.toLowerCase());
-
-    if (pcOnlyFilter === "true") return item.type === "pc";
-
-    return true;
-  });
+  const items = filterFunction(allItems, nameFilter, pcOnlyFilter);
 
   return (
     <>
