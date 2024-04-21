@@ -57,7 +57,6 @@ function generateUniqueNames() {
 }
 
 const uniqueNamesList = generateUniqueNames();
-console.log(uniqueNamesList);
 
 const categories = ["pc", "others", "assistance"];
 
@@ -71,6 +70,6 @@ function generateRandomItem() {
   };
 }
 
-for (let i = 0; i < 2000; i++) {
+for (let i = 0; i < 20000; i++) {
   mockList.push(generateRandomItem());
 }
