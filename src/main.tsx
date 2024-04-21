@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
 import CurrentPage from "./components/CurrentPage.tsx";
+import StorePage from "./components/StorePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "CurrentPage",
         element: <CurrentPage />,
+      },
+      {
+        path: "StorePage",
+        element: <StorePage />,
       },
     ],
   },
