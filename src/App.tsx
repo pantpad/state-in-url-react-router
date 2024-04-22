@@ -9,13 +9,18 @@ import { Outlet, useSearchParams } from "react-router-dom";
 import { mockList as allItems } from "./mockItems/list";
 import { filterFunction } from "./utils/filterFunction";
 
+import useDebounce from "./hooks/useDebounce";
+
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  console.log("re-render");
 
   const nameFilter = searchParams.get("q") || "";
   const pcOnlyFilter = searchParams.get("pcOnly") || "false";
 
-  function addParams(key: string, value: string) {
+  const addParams = (key: string, value: string) => {
+    console.log("setting params");
     setSearchParams(
       (prev) => {
         prev.set(key, value);
@@ -23,7 +28,7 @@ export default function App() {
       },
       { replace: true }
     );
-  }
+  };
 
   const items = filterFunction(allItems, nameFilter, pcOnlyFilter);
 
