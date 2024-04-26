@@ -34,7 +34,7 @@ function generateUniqueNames() {
 
   const totalNames = prefixes.length * suffixes.length;
 
-  if (totalNames < 2000) {
+  if (totalNames < 20000) {
     for (const prefix of prefixes) {
       for (const suffix of suffixes) {
         list.push(`${prefix} ${suffix}`);
@@ -42,7 +42,7 @@ function generateUniqueNames() {
     }
   } else {
     const usedIndices = new Set();
-    while (list.length < 2000) {
+    while (list.length < 20000) {
       const index = Math.floor(Math.random() * totalNames);
       if (!usedIndices.has(index)) {
         const prefixIndex = Math.floor(index / suffixes.length);

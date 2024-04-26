@@ -1,14 +1,21 @@
 type FiltersType = {
-  addParams: (key: string, value: string) => void;
-  nameFilter: string;
-  pcOnlyFilter: string;
+  searchParams: URLSearchParams;
+  changeName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  togglePc: () => void;
 };
 
+import { useState, useTransition } from "react";
+
 export default function Filters({
-  addParams,
-  nameFilter,
-  pcOnlyFilter,
+  searchParams,
+  changeName,
+  togglePc,
 }: FiltersType) {
+  const [isLoading, startTransition] = useTransition();
+  const [name, setName] = useState("");
+
+  const paramInput = searchParams.get("q") || "";
+
   return (
     <>
       <form className="flex flex-col">
@@ -17,9 +24,12 @@ export default function Filters({
           <input
             type="text"
             id="search"
-            value={nameFilter}
+            value={isLoading ? name : paramInput}
             onChange={(e) => {
-              addParams("q", e.target.value);
+              setName(e.target.value);
+              startTransition(() => {
+                changeName(e);
+              });
             }}
           />
         </div>
@@ -28,10 +38,7 @@ export default function Filters({
           <input
             type="checkbox"
             id="filter"
-            checked={pcOnlyFilter === "true"}
-            onChange={(e) => {
-              addParams("pcOnly", e.target.checked.toString());
-            }}
+            onChange={() => startTransition(togglePc)}
           />
         </div>
       </form>

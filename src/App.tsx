@@ -8,27 +8,45 @@ import { Outlet, useSearchParams } from "react-router-dom";
 
 import { mockList as allItems } from "./mockItems/list";
 import { filterFunction } from "./utils/filterFunction";
-
+import { useEffect, useState } from "react";
 import useDebounce from "./hooks/useDebounce";
 
-export default function App() {
-  const [searchParams, setSearchParams] = useSearchParams();
+// import useDebounce from "./hooks/useDebounce";
 
+export default function App() {
   console.log("re-render");
 
-  const nameFilter = searchParams.get("q") || "";
-  const pcOnlyFilter = searchParams.get("pcOnly") || "false";
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const addParams = (key: string, value: string) => {
-    console.log("setting params");
-    setSearchParams(
-      (prev) => {
-        prev.set(key, value);
+  const [name, setName] = useState("");
+  const [isPc, setIsPc] = useState(false);
+
+  const nameFilter = useDebounce(name, 1000).toString();
+  const pcOnlyFilter = useDebounce(isPc, 1000).toString();
+
+  useEffect(() => {
+    let skip = false;
+
+    if (!skip) {
+      setSearchParams((prev) => {
+        prev.set("q", nameFilter);
+        prev.set("pcOnly", pcOnlyFilter);
         return prev;
-      },
-      { replace: true }
-    );
-  };
+      });
+    }
+
+    return () => {
+      skip = true;
+    };
+  }, [nameFilter, pcOnlyFilter]);
+
+  function changeName(e: React.ChangeEvent<HTMLInputElement>) {
+    setName(e.target.value);
+  }
+
+  function togglePc() {
+    setIsPc((prev) => !prev);
+  }
 
   const items = filterFunction(allItems, nameFilter, pcOnlyFilter);
 
@@ -38,9 +56,9 @@ export default function App() {
         <Nav />
         <Outlet />
         <Filters
-          addParams={addParams}
-          nameFilter={nameFilter}
-          pcOnlyFilter={pcOnlyFilter}
+          searchParams={searchParams}
+          changeName={changeName}
+          togglePc={togglePc}
         />
         <List list={items} />
       </main>
