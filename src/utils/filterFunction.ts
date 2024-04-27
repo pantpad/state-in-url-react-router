@@ -2,8 +2,8 @@ import { listItem } from "../mockItems/list";
 
 export function filterFunction(
   list: listItem[],
-  nameFilter: string,
-  pcOnlyFilter: string
+  nameFilter: string | null | undefined,
+  pcOnlyFilter: string | null | undefined
 ) {
   return list.filter((item) => {
     if (nameFilter && pcOnlyFilter === "true") {

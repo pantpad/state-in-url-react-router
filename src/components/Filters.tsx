@@ -1,7 +1,7 @@
 type FiltersType = {
   searchParams: URLSearchParams;
   changeName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  togglePc: () => void;
+  togglePc: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 import { useState, useTransition } from "react";
@@ -13,8 +13,9 @@ export default function Filters({
 }: FiltersType) {
   const [isLoading, startTransition] = useTransition();
   const [name, setName] = useState("");
-
   const paramInput = searchParams.get("q") || "";
+  const pcOnly = searchParams.get("pcOnly") || "false";
+  console.log("pc", pcOnly);
 
   return (
     <>
@@ -24,8 +25,9 @@ export default function Filters({
           <input
             type="text"
             id="search"
-            value={isLoading ? name : paramInput}
+            value={name ? name : paramInput}
             onChange={(e) => {
+              console.log("value-changed");
               setName(e.target.value);
               startTransition(() => {
                 changeName(e);
@@ -38,7 +40,12 @@ export default function Filters({
           <input
             type="checkbox"
             id="filter"
-            onChange={() => startTransition(togglePc)}
+            checked={pcOnly === "true" ? true : false}
+            onChange={(e) =>
+              startTransition(() => {
+                togglePc(e);
+              })
+            }
           />
         </div>
       </form>

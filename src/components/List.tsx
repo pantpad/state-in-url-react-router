@@ -5,6 +5,7 @@ type ListProps = {
 };
 
 export default function List({ list }: ListProps) {
+  console.log("list-re-render");
   return (
     <>
       <ul className="text-left">
